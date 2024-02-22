@@ -8,6 +8,7 @@ import CreateAccount from './routes/join';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import LoadingScreen from './components/lodaing-screen';
+import { auth } from './firebase';
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,7 @@ function App() {
   const [isLoading, setLoading] = useState(true);
   const init = async function() {
     // wait for firebase 
+    await auth.authStateReady();
     setLoading(false);
 
     // test 
