@@ -77,7 +77,7 @@ export default function CreateAccount() {
     }
 
     return <Wrapper>
-        <Title>Log in to 𝑋</Title>
+        <Title>Join in to 𝑋</Title>
         <Form onSubmit={onSubmit}>
             <Input onChange={onChange} name="name" value={name} type="text" placeholder="name" required autoFocus />
             <Input onChange={onChange} name="email" value={email} type="email" placeholder="email" required />
