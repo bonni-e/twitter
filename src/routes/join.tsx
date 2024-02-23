@@ -81,6 +81,9 @@ export default function CreateAccount() {
 
             const credential = await createUserWithEmailAndPassword(auth, email, password);
             const user = credential.user;
+
+            // console.log(user);
+
             await updateProfile(user, {displayName : name, photoURL: ""});
 
             // redirect
