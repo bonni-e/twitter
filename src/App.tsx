@@ -5,7 +5,7 @@ import Home from './routes/home';
 import Profile from './routes/profile';
 import Login from './routes/login';
 import CreateAccount from './routes/join';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import LoadingScreen from './components/lodaing-screen';
 import { auth } from './firebase';
@@ -35,6 +35,12 @@ const router = createBrowserRouter([
   },
 ]);
 
+const Wrapper = styled.div`
+  min-height : 100vh;
+  display: flex;
+  justify-content: center;
+`;
+
 const GlobalStyles = createGlobalStyle`
   ${reset};
   *{
@@ -63,10 +69,10 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Wrapper>
       <GlobalStyles />
       {isLoading? <LoadingScreen /> : <RouterProvider router={router} />}
-    </>
+    </Wrapper>
   );
 }
 
