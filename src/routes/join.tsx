@@ -3,6 +3,7 @@ import { useState } from "react";
 import styled from "styled-components"
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { FirebaseError } from "firebase/app";
 
 const Wrapper = styled.div`
     display: flex;
@@ -74,6 +75,7 @@ export default function CreateAccount() {
         // . redirect to the home page 
         
         try { 
+            setError("");
             setLoading(true);
 
             if(isLoading || name === "" || email === "" || password === "")
@@ -88,12 +90,18 @@ export default function CreateAccount() {
 
             // redirect
             navigate("/");
+
+            setLoading(true);
         }
         catch (e) {
-            // setError();
+            if (e instanceof FirebaseError) {
+                setError(e.code);
+
+                setLoading(false);
+            }
         }
         finally {
-            setLoading(true);
+
         }
     }
 
