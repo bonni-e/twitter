@@ -38,6 +38,7 @@ const Input = styled.input`
 `;
 
 const Error = styled.span`
+    margin-top: 10px;
     font-weight: 600;
     color: tomato;
 `;
