@@ -1,47 +1,9 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import styled from "styled-components"
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-const Title = styled.h1`
-    font-size: 32px;
-    margin: 30px auto;
-`;
-
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    min-width: 420px;
-    width: 60vw;
-`;
-
-const Input = styled.input`
-    margin: 7px 30px;
-    padding: 10px;
-    &[type="submit"] {
-        cursor: pointer;
-        &:hover {
-            opacity: 0.8;
-        }
-    }
-    &:focus {
-        outline: none;
-    }
-`;
-
-const Error = styled.span`
-    margin-top: 10px;
-    font-weight: 600;
-    color: tomato;
-`;
+import { Error, Form, Input, Switcher, Title, Wrapper } from "../components/auth-components";
 
 export default function Login() {
     // hook 
@@ -109,5 +71,8 @@ export default function Login() {
             <Input type="submit" value={isLoading ? "Loading..." : "Log in"} />
         </Form>
         {error !== "" ? <Error>{error}</Error> : null}
+        <Switcher>
+            Don't have an account? <Link to={"/join"}>Create one &rarr;</Link>
+        </Switcher>
     </Wrapper>
 }
